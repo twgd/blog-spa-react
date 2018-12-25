@@ -1,0 +1,16 @@
+$font-size-sm: 10px;
+$font-color-sm: #808080;
+
+.footer {
+    margin: 20px auto;
+    color:$font-color-sm;
+    font-size: $font-size-sm;
+
+    .aboutme {
+        text-align: center;
+
+        a {
+            color: $font-color-sm;
+        }
+    }
+}

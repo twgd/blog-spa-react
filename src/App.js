@@ -1,91 +1,37 @@
 /*
-    處理部落格 ( home & about )
+    處理整個部落格
 */
 
 import React from 'react';
-import Posts from './Posts';
+import { HashRouter as Router, Route } from 'react-router-dom';
+import Home from './Home';
+import About from './About';
+import Navbar from './Navbar';
+import Header from './Header';
+import PostList from './PostList';
+import Post from './Post';
+import NewPost from './NewPost';
 
-
-const About = () => {
-    return (
-        <div>
-            <div className="my-3">
-                <h2>關於我</h2>
-            </div>
-        </div>
-    )
-}
-
-const Home = () => {
-    return (
-        <div>
-            <div className="my-3">
-                <h2>首頁</h2>
-            </div>
-        </div>
-    )
-}
 
 class App extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            tab: 'home'
-        }
-    }
-
-    handleTabChange(e) {
-        // 防止超連結
-        e.preventDefault();
-
-        const newTab = e.target.name;
-        
-        this.setState({
-            tab: newTab,
-        })
-        
-    }
 
     render() {
-        const {tab} = this.state;
-
+        
         return (
-            <div>
-                <nav className="navbar navbar-dark bg-dark">
+            <Router>
+                <div>
+                    <Header />
+                    <Navbar />
                     <div className="container">
-                        <ul className="navbar-nav d-flex flex-row">
-                            <li className="nav-item mr-3">
-                                <button
-                                    className={"btn btn-outline-info " + (tab === 'home' ? 'active' : '')}
-                                    name="home"
-                                    onClick={(e) => this.handleTabChange(e)}
-                                >Home</button>
-                            </li>
-                            <li className="nav-item mr-3">
-                                <button
-                                    className={"btn btn-outline-info " + (tab === 'about' ? 'active' : '')}
-                                    name="about"
-                                    onClick={(e) => this.handleTabChange(e)}
-                                >About</button>
-                            </li>
-                            <li className="nav-item mr-3">
-                                <button
-                                    className={"btn btn-outline-info " + (tab === 'posts' ? 'active' : '')}
-                                    name="posts"
-                                    onClick={(e) => this.handleTabChange(e)}
-                                >Posts</button>
-                            </li>
-                        </ul>  
+                        <Route exact path="/" component={Home} />
+                        <Route path="/about" component={About} />
+                        <Route exact path="/posts" component={PostList} />
+                        <Route path="/posts/:postId" component={Post} />
+                        <Route path="/newpost" component={NewPost} />
                     </div>
-                </nav>
-
-                <div className="container">
-                    {tab === 'home' && <Home />}
-                    {tab === 'about' && <About />}
-                    {tab === 'posts' && <Posts />}
                 </div>
-            </div>
+            </Router>
+            
         )
     }
 }
