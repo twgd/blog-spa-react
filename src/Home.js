@@ -32,18 +32,23 @@ class Home extends React.Component {
 
     render() {
         const {posts} = this.state;
-        console.log(posts)
+        //console.log(posts)
         
         return (
             <div>
                 <div className="my-3">
                     {posts.map((item) => 
-                        <div className="card" key={item.id}>
-                            <div className="card-body">
-                                <h5 className="card-title">{item.title}</h5>
-                                <h6 className="card-subtitle mb-2 text-muted">{item.author}</h6>
-                                <p className="card-text">{item.body}</p>
-                                <Link to={"/posts/" + item.id } className="card-link">閱讀文章</Link>
+                        <div className="card border-0 mb-5" key={item.id}>
+                            <div className="card-body border-bottom">
+                                <h2 className="card-title mb-3">
+                                    <Link to={"/posts/" + item.id } className="card-link text-dark">{item.title}</Link>
+                                </h2>
+                                <h6 className="card-subtitle mb-2 text-muted">
+                                    <i className="fas fa-user mr-2"></i>
+                                    {item.author}
+                                </h6>
+                                <p className="card-text mt-3 text-truncate">{item.body}</p>
+                                <Link to={"/posts/" + item.id } className="card-link text-secondary">繼續閱讀</Link>
                             </div>
                         </div>
                     )}

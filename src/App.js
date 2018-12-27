@@ -22,12 +22,14 @@ class App extends React.Component {
                 <div>
                     <Header />
                     <Navbar />
-                    <div className="container">
-                        <Route exact path="/" component={Home} />
-                        <Route path="/about" component={About} />
-                        <Route exact path="/posts" component={PostList} />
-                        <Route path="/posts/:postId" component={Post} />
-                        <Route path="/newpost" component={NewPost} />
+                    <div className="container mt-5">
+                        <div className="content">
+                            <Route exact path="/" component={Home} />
+                            <Route path="/about" component={About} />
+                            <Route exact path="/posts" component={PostList} />
+                            <Route path="/posts/:postId" component={Post} />
+                            <Route path="/newpost" component={NewPost} />
+                        </div>
                     </div>
                 </div>
             </Router>

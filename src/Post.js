@@ -3,8 +3,9 @@
 */
 
 import React from 'react';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { Button } from 'reactstrap';
 
 // 單篇文章
 class Post extends React.Component {
@@ -34,10 +35,21 @@ class Post extends React.Component {
         const {post} = this.state;
         return (
             <div>
-                <Link className="btn btn-primary" to="/posts" role="button">回到文章列表</Link>
-                <h2>{post.title}</h2>
-                <p>{post.author}</p>
-                <p>{post.body}</p>
+                <div className="mb-3">
+                    <Link to="/posts">
+                        <Button outline color="secondary">回到文章列表</Button>
+                    </Link>
+                </div>
+                <header className="content__header">
+                    <h2 className="content__title">{post.title}</h2>
+                </header>
+                <div className="content__body">
+                    <p className="post-author">
+                        <i className="fas fa-user mr-2"></i>
+                        {post.author}
+                    </p>
+                    <p className="post-body">{post.body}</p>
+                </div>
             </div>
         )
         

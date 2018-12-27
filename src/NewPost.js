@@ -1,9 +1,10 @@
 /*
-    發表新文章表單
+    發表新文章
 */
 
 import React from 'react';
 import axios from 'axios';
+import { Alert } from 'reactstrap';
 
 
 class NewPost extends React.Component {
@@ -54,31 +55,33 @@ class NewPost extends React.Component {
 
     render() {
         const { title, author, body, published } = this.state;
-        console.log(title, author, body, published);
+        // console.log(title, author, body, published);
         return (
             <div>
-                <div className="my-3">
-                    {
-                        published && 
-                        <div className="alert alert-success" role="alert">
-                            文章發佈成功！
-                        </div>
-                    }
-                    <h2>發佈新文章</h2>
+                {
+                    published && 
+                    <Alert className="alert" color="success">
+                        文章發佈成功！
+                    </Alert>
+                }
+                <header className="content__header">
+                    <h2 className="content__title">發佈新文章</h2>
+                </header>
+                <div className="content__body">
                     <form>
                         <div className="form-group">
-                            <label htmlFor="title">標題</label>
+                            <label className="font-weight-bold" htmlFor="title">標題</label>
                             <input type="text" className="form-control" name="title" placeholder="文章標題" value={title} onChange={(e) => this.handelChange(e)} />
                         </div>
                         <div className="form-group">
-                            <label htmlFor="author">作者</label>
+                            <label className="font-weight-bold" htmlFor="author">作者</label>
                             <input type="text" className="form-control" name="author" placeholder="作者" value={author} onChange={(e) => this.handelChange(e)} />
                         </div>
                         <div className="form-group">
-                            <label htmlFor="body">內容</label>
+                            <label className="font-weight-bold" htmlFor="body">內容</label>
                             <textarea className="form-control" name="body" rows="3" placeholder="文章內容" value={body} onChange={(e) => this.handelChange(e)}></textarea>
                         </div>
-                        <button className="btn btn-info" onClick={(e) => this.createNewPost(e)}>發佈</button>
+                        <button className="btn btn-outline-secondary" onClick={(e) => this.createNewPost(e)}>發佈</button>
                     </form>
                 </div>
             </div>

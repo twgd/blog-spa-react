@@ -1,5 +1,6 @@
 /*
     處理文章列表
+    p.s. 還未做分頁功能
 */
 
 import React from 'react';
@@ -18,9 +19,14 @@ class List extends React.Component {
         const {post} = this.props;
 
         return (
-            <li className="list-group-item" onClick={()=>this.handelClick()}>
-                {'#' + post.id}<br />
-                {post.title}
+            <li className="list-group-item border-top-0 pl-0 mb-5">
+                <h5 className="post-list-title" onClick={()=>this.handelClick()}>{post.title}</h5>
+                <div className="post-list-infomation text-secondary">
+                    <span className="post-list-author">
+                        <i className="fas fa-user mr-2"></i>
+                        {post.author}
+                    </span>
+                </div>
             </li>
         );
     }
@@ -59,19 +65,21 @@ class PostList extends React.Component {
 
         return (
             <div>
-                <div className="my-3">
-                    <h2>文章列表</h2>
-                </div>
-                <div className="card">
-                    <ul className="list-group list-group-flush">
-                        {posts.map((item) => 
-                            <List
-                                key={item.id}
-                                post={item}
-                                handelClick={(id) =>this.handelClick(id)}
-                            />
-                        )}
-                    </ul>
+                <header className="content__header">
+                    <h2 className="content__title">文章列表</h2>
+                </header>
+                <div className="content__body">
+                    <div className="card border-0">
+                        <ul className="list-group list-group-flush">
+                            {posts.map((item) => 
+                                <List
+                                    key={item.id}
+                                    post={item}
+                                    handelClick={(id) =>this.handelClick(id)}
+                                />
+                            )}
+                        </ul>
+                    </div>
                 </div>
             </div>
         )

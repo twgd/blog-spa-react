@@ -28,18 +28,17 @@ const Item = props => {
 const Navbar = () => {
     return (
         <Router>
-            <nav className="navbar navbar-dark bg-dark">
-                <div className="container">
-                    <ul className="navbar-nav d-flex flex-row">
+            <div className="container">
+                <nav className="navbar navbar-expand-sm navbar-light justify-content-center border-bottom border-top">
+                    <ul className="navbar-nav">
                         <Item to="/" exact={true} label="首頁" />
                         <Item to="/about" label="關於我" />
-                        <Item to="/posts" label="我的文章" />
+                        <Item to="/posts" label="全部文章" />
                         <Item to="/newpost" label="新增文章" />
-                    </ul>  
-                </div>
-            </nav>
+                    </ul>
+                </nav>
+            </div>
         </Router>
-        
     );
 }
 
