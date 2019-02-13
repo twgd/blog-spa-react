@@ -44,7 +44,7 @@ class PostList extends React.Component {
 
     componentDidMount() {
         // ajax 抓資料
-        axios.get('http://45.55.26.18:3310/posts?_sort=id&_order=desc')
+        axios.get('https://qootest.com/posts?_sort=id&_order=desc')
             .then((res)=>{
                 this.setState({
                     posts: res.data,

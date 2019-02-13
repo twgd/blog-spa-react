@@ -23,7 +23,8 @@
 
 ### 串接 API
 
-API 格式：
+- 使用 axios 串接
+- API 格式：
 endpoint：https://qootest.com/
 使用說明：https://github.com/typicode/json-server
 

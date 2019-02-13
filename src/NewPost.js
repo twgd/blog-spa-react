@@ -35,7 +35,7 @@ class NewPost extends React.Component {
             return;
         }
 
-        axios.post('http://45.55.26.18:3310/posts',  {
+        axios.post('https://qootest.com/posts',  {
                 title,
                 author,
                 body
