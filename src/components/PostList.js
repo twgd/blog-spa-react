@@ -4,7 +4,6 @@
 */
 
 import React from 'react';
-import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 
 
@@ -15,17 +14,23 @@ class List extends React.Component {
         this.props.handelClick(this.props.post.id)
     }
 
+    handelRemove() {
+        this.props.handelRemove(this.props.post.id)
+    }
+
     render() {
         const {post} = this.props;
 
         return (
             <li className="list-group-item border-top-0 pl-0 mb-5">
                 <h5 className="post-list-title" onClick={()=>this.handelClick()}>{post.title}</h5>
-                <div className="post-list-infomation text-secondary">
+                <div className="post-list-status text-secondary">
                     <span className="post-list-author">
                         <i className="fas fa-user mr-2"></i>
                         {post.author}
                     </span>
+                    <button type="button" className="btn btn-secondary btn-sm ml-3">編輯</button>
+                    <button type="button" className="btn btn-danger btn-sm ml-1" onClick={()=>this.handelRemove()}>刪除</button>
                 </div>
             </li>
         );
@@ -34,34 +39,40 @@ class List extends React.Component {
 
 // 文章列表頁
 class PostList extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            posts: [],
-        }
-    }
 
     componentDidMount() {
-        // ajax 抓資料
-        axios.get('http://45.55.26.18:3310/posts?_sort=id&_order=desc')
+        const {setPosts} = this.props;
+
+        axios.get('https://qootest.com/posts?_sort=id&_order=desc')
             .then((res)=>{
-                this.setState({
-                    posts: res.data,
-                });
+                setPosts(res.data);
             })
             .catch((err) => {
                 console.log(err);
             })
+
     }
+    
 
     handelClick(id) {
         const {history} = this.props;
         history.push('/posts/' + id);
     }
 
+    handelRemove(id) {
+        const {removePost} = this.props;
+        axios.delete('https://qootest.com/posts/' + id)
+            .then(()=>{
+                removePost(id);
+            })
+            .catch((err)=>{
+                console.log(err);
+            })
+    }
+
     render() {
-        const {posts} = this.state;
+        console.log(this.props)
+        const {posts} = this.props;
 
         return (
             <div>
@@ -75,7 +86,8 @@ class PostList extends React.Component {
                                 <List
                                     key={item.id}
                                     post={item}
-                                    handelClick={(id) =>this.handelClick(id)}
+                                    handelClick={(id) => this.handelClick(id)}
+                                    handelRemove={(id) => this.handelRemove(id)}
                                 />
                             )}
                         </ul>
@@ -86,4 +98,5 @@ class PostList extends React.Component {
     }
 }
 
-export default withRouter(PostList);
+
+export default PostList;

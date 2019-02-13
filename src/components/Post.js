@@ -5,7 +5,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { Button } from 'reactstrap';
 
 // 單篇文章
 class Post extends React.Component {
@@ -19,7 +18,7 @@ class Post extends React.Component {
 
     componentDidMount() {
         const postId = this.props.match.params.postId;
-        axios.get('http://45.55.26.18:3310/posts/' + postId )
+        axios.get('https://qootest.com/posts/' + postId )
             .then((res) => {
                 this.setState({
                     post: res.data,
@@ -37,17 +36,21 @@ class Post extends React.Component {
             <div>
                 <div className="mb-3">
                     <Link to="/posts">
-                        <Button outline color="secondary">回到文章列表</Button>
+                        <button type="button" className="btn btn-outline-secondary">回到文章列表</button>
                     </Link>
                 </div>
                 <header className="content__header">
                     <h2 className="content__title">{post.title}</h2>
                 </header>
                 <div className="content__body">
-                    <p className="post-author">
-                        <i className="fas fa-user mr-2"></i>
-                        {post.author}
-                    </p>
+                    <div className="post-status">
+                        <p className="post-author">
+                            <i className="fas fa-user mr-2"></i>
+                            {post.author}
+                        </p>
+                        <button type="button" className="btn btn-secondary btn-sm">編輯</button>
+                        <button type="button" className="btn btn-danger btn-sm ml-1">刪除</button>
+                    </div>
                     <p className="post-body">{post.body}</p>
                 </div>
             </div>
