@@ -35,7 +35,7 @@ class NewPost extends React.Component {
             return;
         }
 
-        axios.post('https://qootest.com/posts',  {
+        axios.post('https://blog.poketrainer.tw/posts',  {
                 title,
                 author,
                 body

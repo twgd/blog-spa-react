@@ -19,7 +19,7 @@ class Home extends React.Component {
 
     componentDidMount() {
         // ajax 取文章，依 id 反序，10 篇
-        axios.get('https://qootest.com/posts?_sort=id&_order=desc&_limit=10')
+        axios.get('https://blog.poketrainer.tw/posts?_sort=id&_order=desc&_limit=10')
             .then((res) => {
                 this.setState({
                     posts: res.data,

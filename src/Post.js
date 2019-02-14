@@ -19,7 +19,7 @@ class Post extends React.Component {
 
     componentDidMount() {
         const postId = this.props.match.params.postId;
-        axios.get('https://qootest.com/posts/' + postId )
+        axios.get('https://blog.poketrainer.tw/posts/' + postId )
             .then((res) => {
                 this.setState({
                     post: res.data,
